@@ -15,4 +15,10 @@ mydata = read.csv("data.csv",colClasses = c("character","factor","numeric","char
 ```
 
 ##ניתוח הנתונים:
-###גרפים
+###גרפים:
+####2D boxplot:
+```{r}
+boxplot(mydata$price~mydata$city,col="blue",las=2,mar = c(10,4,4,2) + 0.1)
+```
+
+
