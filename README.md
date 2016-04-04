@@ -20,5 +20,6 @@ mydata = read.csv("data.csv",colClasses = c("character","factor","numeric","char
 ```{r}
 boxplot(mydata$price~mydata$city,col="blue",las=2,mar = c(10,4,4,2) + 0.1)
 ```
+![](https://cloud.githubusercontent.com/assets/17852872/14242690/0dc4a75e-fa5a-11e5-81e7-a87f9255ea31.png)
 
 
