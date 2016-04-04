@@ -56,3 +56,18 @@ ggmap(map) + geom_point(data = mydata, aes(x = longitude, y = latitude, colour =
 ![](https://cloud.githubusercontent.com/assets/17852872/14242799/ad44811e-fa5a-11e5-8e2a-6eec5d036965.jpg)
 
 כפי שהתבקשנו, הקובץ מכיל נתוני מיקום שניתן למקם על מפה ומהם יצרנו מפה שנוצרה ע"פ נתוני מיקום אלו (קווי רוחב וגובה). אפשר להגיד שניתן לראות בצורה מאוד רופפת שהדירות בצפון יותר יקרות מהדרום אבל פעם נוספת הדבר מאוד לא מובהק וישנם המון יוצאים מן הכלל. כנ"ל לגבי הדירות שבמערב לעומת המזרח. בהמשך ננסה לחקור מאפיינים שלהם השפעה יותר חזקה על המחיר מאשר עיר ואיזור
+
+###ניתוח חשיבות מאפיינים שונים:
+נשתמש בחבילת caret אשר מספקת כלים שבאופן אוטומטי מדווחים על הרלוונטיות והחשיבות של מאפיינים  בנתונים ואף לבחור את המאפיינים הכי חשובים עבורנו.
+```{r}
+set.seed(nrow(dataset))
+control <- trainControl(method="repeatedcv", number=10, repeats=3)
+dataset$price_discrete <-as.factor(dataset$price_discrete)
+dataset$city <-as.numeric(dataset$city)
+dataset$city <-as.factor(dataset city)
+x<- dataset[,c("city","sq__ft" )]
+y<- dataset$price_discrete
+model <- train(x, y, method="lvq", preProcess="scale", trControl=control)
+importance <- varImp(model, scale=FALSE)
+plot(importance)
+```
