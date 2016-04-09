@@ -93,3 +93,5 @@ correlationMatrix<- cor(dataset[,c("city","beds","baths","price","sq__ft")])
  print(correlationMatrix)
 ```
 
+![](https://cloud.githubusercontent.com/assets/17852872/14403910/cbac65e8-fe71-11e5-8c05-197d1c85ee58.PNG)
+
