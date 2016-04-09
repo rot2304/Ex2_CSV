@@ -66,14 +66,15 @@ control <- trainControl(method="repeatedcv", number=10, repeats=3)
 dataset$price_discrete <-as.factor(dataset$price_discrete)
 dataset$city <-as.numeric(dataset$city)
 dataset$city <-as.factor(dataset city)
-x<- dataset[,c("city","sq__ft" )]
+x<- dataset[,c("city","sq__ft","baths","beds")]
 y<- dataset$price_discrete
 model <- train(x, y, method="lvq", preProcess="scale", trControl=control)
 importance <- varImp(model, scale=FALSE)
 plot(importance)
+
 ```
 
-![](https://cloud.githubusercontent.com/assets/17852872/14242800/ad44a8ba-fa5a-11e5-9b4a-97a68dbd6b23.png)
+![](https://cloud.githubusercontent.com/assets/17852872/14242803/ad46c0d2-fa5a-11e5-88d8-96de438a0b51.png)
 
 ע"מ להפיק את חשיבות המאפיינים היה לבצע עלינו עבודה מקדמת בהכנת הנתונים ע"מ שניתן יהיה להפעיל עליהם את פונקציות ניתוח החשיבות.
 הכנת הנתונים לצורך כך כללה את הפעולות הבאות:
@@ -83,8 +84,5 @@ plot(importance)
 אשר יכולה לקבל את הערכים 0,1 כאשר 0 יקבלו רשומות שמחירי הדירות שלהם קטנים מ500,000 ו1 יקבלו דירות אשר מחירי הדירות שלהם גדולים מ500,000. פעולה זו הכרחית מכיוון שאימון מודל חשיבות המאפיינים אינו יודע לאמן ערכים לגבי מסווגים לא בדידים.
 
 *	הפכנו את ערכי העמודה “עיר" לנומריים מכיוון שלא ניתן לבצע חשיבות מאפיינים על עמודות מסוג מחרוזת אלא על שדות נומריים בלבד.
-*
-בדקנו את חשיבות המשתנים "עיר" – העיר בה נמצאת הדירה ,
-"מטר מרובע"– גודל הדירה לגבי מחירי הדירות ("מחיר").
-ניתן לראות כי מחירי הדירות מושפעים יותר מהמיקום על פני גודל הדירה  אך עדיין לא בצורה מספקת. ננסה למצוא מאפיינים אחרים אשר בהם נראה השפעה מובהקת.
+
 
